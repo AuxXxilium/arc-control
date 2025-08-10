@@ -5,8 +5,8 @@ Arc Control App for DSM 7.x (Xpenology)
 ### Links
 
 - <a href="https://github.com/AuxXxilium">Overview</a>
-- <a href="https://auxxxilium.tech/wiki">FAQ & Wiki</a>
-- <a href="https://github.com/AuxXxilium/arc/releases?q=prerelease%3Afalse&expanded=true">Download latest Build</a>
+- <a href="https://xpenology.tech/wiki">FAQ & Wiki</a>
+- <a href="https://github.com/AuxXxilium/arc-control/releases?q=prerelease%3Afalse&expanded=true">Download latest Release</a>
 
 ### Developer
 
