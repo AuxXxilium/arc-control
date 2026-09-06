@@ -1,6 +1,6 @@
 <center><img width="845" alt="arc_loader" src="https://github.com/AuxXxilium/arc/raw/page/docs/arc_loader.png?raw=true"></center>
 
-Arc Control App for DSM 7.x (Xpenology)
+## Arc Control App for DSM 7.x (Xpenology)
 
 **Configure and monitor your Arc system directly from DSM — without rebooting into Arc Config Mode.**
 
