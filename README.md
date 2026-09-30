@@ -1,72 +1,136 @@
-<center><img width="845" alt="arc_loader" src="https://github.com/AuxXxilium/arc/raw/page/docs/arc_loader.png?raw=true"></center>
+<div align="center">
 
-## Arc Control App for DSM 7.x (Xpenology)
+<img width="160" alt="arc-control" src=".github/arc-control.png">
 
-**Configure and monitor your Arc system directly from DSM — without rebooting into Arc Config Mode.**
+### Arc Control — the Arc and Arx app for DSM 7.x
 
-Arc Control installs as a DSM package and adds a full management interface to your desktop. Most of what previously meant rebooting into Config Mode can be done while DSM keeps running.
+Configure, update and monitor your loader straight from DSM.<br>
+No reboot into Config Mode for most of what used to need one.
 
-> ⚠️ **Arc Control is for experienced users.** It can change your loader configuration, tune kernel settings, restart your NAS and grant elevated privileges. Loader changes are best made in Arc Config Mode where possible.
+<a href="https://github.com/AuxXxilium/arc-control/releases/latest"><img alt="Download" src="https://img.shields.io/badge/download-red?style=for-the-badge&label=latest&color=%23FF0000"></a>
+<a href="https://xpenology.tech/documentation/"><img alt="Documentation" src="https://img.shields.io/badge/read_first-blue?style=for-the-badge&label=docs&color=%230066CC"></a>
+<a href="https://discord.auxxxilium.tech"><img alt="Discord" src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&label=chat&color=%235865F2"></a>
 
-## Features
+</div>
 
-### Arc Loader
+---
 
-- **Configuration** — edit your loader settings as ordinary form fields: DSM model, version, platform, PAT URL and checksum, serial number, MAC addresses, USB VID/PID, SataDOM, kernel options, module blacklist, and what appears on the boot screen. Back up your configuration to a file at any time.
-- **Addons** — browse every available Arc addon with its description and version, search the list, and enable or disable individual addons.
-- **One-click restarts** — reboot straight into Rebuild, Update, Config, Recovery, Automated, Junior or UEFI mode, each explained before you commit.
-- **Update notice** — the overview tells you when a newer Arc Loader is available and shows the release notes.
+> [!IMPORTANT]
+> * Arc Control is a DSM package for machines booted by [Arc](https://github.com/AuxXxilium/arc) or [arx](https://github.com/AuxXxilium/arx). It is not a loader.
+> * **Commercial use is not permitted and strictly forbidden.**
+> * DSM and all parts of it are under copyright / ownership by Synology Inc.
+> * The app is free and will stay free forever. If you paid a suspicious person for it, I can't help you — I'm not connected to them.
 
-Configuration and addon changes are written to your loader and take effect after a rebuild.
+> [!WARNING]
+> Arc Control is for experienced users. It can change and rebuild your loader, tune kernel settings, patch DSM, restart your NAS and grant root privileges to packages, and it includes a root terminal. Loader changes are still best made in Config Mode where possible. Back up anything on the machine's disks first. I'm not liable for damage or loss of any kind.
 
-### Monitoring
+---
 
-- **Overview** — DSM model, version and build, Arc Loader version, CPU, memory, motherboard, kernel, GPU, live clock speed and system temperature at a glance. You can even upload a photo of your own mainboard.
-- **System Monitor** — CPU and memory utilisation, per-core clock speeds, disk I/O, temperatures, fans, storage controllers, NVMe drives and network interfaces. Click any drive for its complete SMART report.
-- **Resource Monitor** — live CPU, memory and swap usage, per-core load, and a searchable, sortable process list. Open any process for full detail — and stop a runaway one if you need to.
-- **Network Monitor** — per-interface addressing, link state, speed and duplex, live throughput, error and dropped-packet counts, MTU, and bond membership.
-- **NVIDIA** — temperature, power draw, memory, utilisation and clocks for each card, plus the raw `nvidia-smi` output. *(Appears when an NVIDIA GPU is present.)*
+## ✨ What Arc Control does
 
-### Tuning
+Arc Control installs from Package Center and adds an app and a desktop widget to DSM. It detects whether Arc or arx booted the machine and only shows the pages that loader supports.
 
-- **CPU Control** — set how many CPU threads stay online and whether physical cores are preferred over Hyper-Threading siblings; choose the frequency governor; switch turbo on or off; set the energy/performance preference; and tune frequency-scaling responsiveness. On hybrid CPUs you can pin workloads to P-cores or E-cores. Settings survive a reboot, and every option can be reset to the loader default.
-- **Dynamic Power Saving** — lowers the frequency ceiling while the NAS is idle and lifts it again under load.
-- **Fan Control** — set fan curves as three temperature/speed points across Full, Cool and Quiet modes, with a live graph and live RPM readout. Give individual fans their own curve, or leave a fan under BIOS control. *(Requires the fancontrol addon and supported hardware.)*
+**Loader**
 
-### Services & Patches
+* **Configuration** — edit Arc's settings as form fields: model, platform, PAT URL and checksum, serial, MACs, USB VID/PID, SataDOM, kernel options, module blacklist and boot screen, and download a backup *(Arc only)*
+* **Addons** — browse, search, enable and disable Arc's or arx's addons, with descriptions and versions
+* **Update & Rebuild** — update the loader and rebuild DSM's kernel and ramdisk from DSM while it keeps running. Every step shows its progress, and if a rebuild fails the previous build is put back. Choose latest or beta, and see what an update would install next to what is installed
+* **Restart into a mode** — Rebuild, Update or Config Mode, each explained before you confirm
+* **Update notice** — the Overview says when a newer loader is available and shows its release notes
 
-- **Arc Connect** *(beta)* — encrypted remote access to your DSM through a private address, with a QR code for your phone, and optional statistics reporting to Arc Web Management.
-- **Apps & Permissions** — grant or revoke elevated privileges per package or per user, and start, stop or restart packages.
-- **StoragePanel** — match DSM's storage panel to your actual bay layout, with preview images.
-- **HDD/SSD Database** — stop DSM overwriting the drive database, silence compatibility and memory warnings, enable IronWolf Health Management or Btrfs deduplication.
-- **App patches** — fix Surveillance Station local display and enable face recognition in Synology Photos.
-- **AppInstaller** — install and patch packages through an interactive terminal.
-- **LED control** — for UGREEN NAS: LEDs on, off, or temperature- and activity-controlled.
-- **VCRT** — browse every available encoder and decoder and the hardware-acceleration APIs your system supports, and make VCRT's FFmpeg the system default. *(Appears when VCRT is installed.)*
-- **Sequential I/O** — tune sequential I/O behaviour on SSD cache volumes.
+**Monitoring**
 
-### Diagnostics
+* **Overview** — model, DSM and loader versions, CPU, memory, board, kernel, live clock speed and temperature, and a photo of your own mainboard if you add one
+* **System Monitor** — utilisation, per-core clocks with the kernel's frequency-step statistics, temperatures, fans, storage controllers, NVMe, GPUs and network. Click any disk for its SMART report and serial
+* **Resource Monitor** — live CPU, memory and swap, per-core load with P- and E-cores marked, and a searchable process list with details and kill
+* **Network Monitor** — addressing, link state, speed, duplex, MTU, throughput, errors, link flaps, bonds and bridges
+* **GPU Monitor** — usage, memory, clocks, power, temperature and fans for Intel (integrated and Arc), AMD and NVIDIA cards
 
-- **Benchmark** — test storage read and I/O performance, single- and multi-core CPU speed, and hardware video encoding.
-- **Speedtest** — measure your internet connection with the Ookla CLI, choosing a server or letting it pick the best one.
-- **Debug** — view kernel boot parameters, loaded modules, MAC addresses and the kernel log; open a root terminal; or generate a complete diagnostic report to attach to a support request.
+**Tuning**
 
-Everything sits in one place, with light and dark themes, a collapsible sidebar, and a DSM desktop widget showing your loader's health at a glance.
+* **CPU Control** — online threads, governor, turbo, energy/performance preference, scaling rate and Dynamic Power Saving. On hybrid CPUs, pin services to P- or E-cores. Every setting survives a reboot
+* **Fan Control** — three-point fan curves across Full, Cool and Quiet, per-fan curves, BIOS control, and a live graph with RPM *(needs the fancontrol addon)*
 
-## Requirements
+**Services and patches**
 
-- DSM 7.x running on an Arc Loader system
-- Some features depend on your hardware or on an Arc addon being enabled, and are hidden when unavailable — Fan Control, NVIDIA, VCRT, StoragePanel, HDD/SSD Database and LED control among them.
+* **Arc Connect** *(beta)* — relayed, end-to-end encrypted remote access to DSM without port forwarding, with a QR code for your phone and optional statistics for [Arc Management](https://arc.xpenology.tech/)
+* **Apps & Permissions** — grant or revoke root escalation per package or user, and start, stop or restart packages
+* **Patches** — StoragePanel, HDD/SSD database (IronWolf Health Management, deduplication, silencing warnings), Sequential I/O, Surveillance Station local display, Synology Photos face recognition
+* **LED control** — on UGREEN machines, LEDs on, off or automatic, and **Disk LED Mapping**, which flashes each disk's LED and lets you move it to the right bay
+* **AppInstaller** — install and patch packages in an interactive terminal
+* **VCRT** — the encoders, decoders and hardware acceleration of VCRT's FFmpeg, which you can make the system default *(appears when VCRT is installed)*
 
-## Installation
+**Diagnostics**
 
-Download the latest package from the <a href="https://github.com/AuxXxilium/arc-control/releases?q=prerelease%3Afalse&expanded=true">Releases</a> page and install it in DSM through **Package Center → Manual Install**.
+* **Benchmark** — storage, CPU and GPU tests with results on the page, the newest Arc benchmark script fetched at each run, and optional submission to the public score database
+* **Speedtest** — Ookla's official client, with automatic or manual server selection
+* **Debug** — kernel command line, loaded modules, MACs, dmesg, a root terminal and a diagnostic report for support requests
 
-### Links
+Light and dark themes, a choice of highlight colours, a collapsible sidebar, and a **?** in the header that opens help for the page you are on.
 
-- <a href="https://github.com/AuxXxilium">Overview</a>
-- <a href="https://xpenology.tech/wiki">FAQ & Wiki</a>
-- <a href="https://github.com/AuxXxilium/arc-control/releases?q=prerelease%3Afalse&expanded=true">Download latest Release</a>
+---
+
+## 🧭 How it works
+
+```
+Package Center → Arc Control (DSM app + desktop widget)
+                 └─ CGI scripts, run by DSM's nginx on each request
+                    → loader: VERSION from /usr/arc or /usr/arx, loader disk mounted per job
+                    → monitoring: sysfs, SMART, nvidia-smi
+                    → tuning: cpufreq settings, reapplied by a boot script after each reboot
+```
+
+No daemon runs in the background. Each page asks the system directly when you open or refresh it. Loader jobs such as Update & Rebuild mount the loader disk, run the loader's own scripts, and unmount it when they finish.
+
+---
+
+## 🖥️ Supported
+
+| Loader | What Arc Control offers |
+| :-- | :-- |
+| [Arc](https://github.com/AuxXxilium/arc) | Everything: Configuration, Addons, restarts into Rebuild, Update and Config Mode. Update & Rebuild from Arc 4.1.0 |
+| [arx](https://github.com/AuxXxilium/arx) | Addons, Update & Rebuild with arx's own jobs, restarts into Rebuild and Config Mode on releases that support them. arx is configured in its web UI, so there is no Configuration page |
+
+Some pages depend on your hardware or an addon and are hidden when they don't apply: Fan Control, GPU Monitor, VCRT, StoragePanel, HDD/SSD Database and LED control.
+
+---
+
+## 📋 What you need
+
+* DSM 7.x on a machine booted by Arc or arx
+* An administrator account in DSM
+* Internet, for loader updates, Arc Connect, Speedtest and the newest benchmark script
+
+---
+
+## 📦 Installation
+
+1. Download the latest `.spk` from the [releases](https://github.com/AuxXxilium/arc-control/releases/latest)
+2. In DSM, open **Package Center → Manual Install** and choose the file
+3. Open **Arc Control** from the main menu, or add its widget to the desktop
+
+To update Arc Control, install the newer `.spk` the same way.
+
+---
+
+## 📚 Documentation
+
+* [Documentation](https://xpenology.tech/documentation/) — **read this first**
+* Every page in the app has its own help behind the **?** in the header
+
+---
+
+## 🧰 More from the Arc Project
+
+| Project | Description |
+| :-- | :-- |
+| [Arc Loader](https://github.com/AuxXxilium/arc) | Redpill loader for DSM 7.x, with guided setup for many platforms and models |
+| [arx](https://github.com/AuxXxilium/arx) | The evolution of Arc — set up entirely from your browser |
+| [Arc Utilities](https://github.com/AuxXxilium/arc-utils) | Tools to install, patch and activate DSM apps on Xpenology |
+| [Arc Management](https://arc.xpenology.tech/) | Web management for Arc, with the sensor data Arc Connect reports |
+| [AuxXxilium](https://github.com/AuxXxilium) | Everything else from the Arc Project |
+
+---
 
 ### Developer
 
@@ -74,4 +138,13 @@ Download the latest package from the <a href="https://github.com/AuxXxilium/arc-
 - <a href="https://github.com/FulcrumCode">Fulcrum</a>
 
 ### Thanks
-Code is based on the work of TTG, pocopico, jumkey, fbelavenuto, wjz304 and others involved in continuing TTG's original redpill-load project.
+
+* **TTG** and everyone who continued the original redpill-load project, which Arc and arx are based on
+* **pocopico, jumkey, fbelavenuto, wjz304, PeterSuh-Q3, 007revad** and others, whose code and work are part of Arc, arx and their addons
+
+<div align="center">
+
+[![Stars](https://img.shields.io/github/stars/AuxXxilium/arc-control?style=for-the-badge&logo=github)](https://github.com/AuxXxilium/arc-control)
+[![Discord](https://img.shields.io/discord/639072565155069962?style=for-the-badge&logo=discord&label=Discord)](https://discord.auxxxilium.tech)
+
+</div>
